@@ -913,13 +913,16 @@ SCRIPT_DIR=$(cd -- &quot;$(dirname -- ${BASH_SOURCE[0]})&quot; &amp;&gt; /dev/nu
 export ARCH=arm
 export CROSS_COMPILE=arm-linux-gnueabihf-
 export KERNEL=kernel7</code></pre></li>
-<li><p>Aplicamos la configuración por defecto y luego configuramos el kernel seleccionando: General Setup -&gt; Preemption Model -&gt; Fully Preemptible kernel (Real-Time).</p>
+<li><p>Aplicamos la configuración por defecto y luego aplicamos la configuración por defecto para el bcm2709</p>
 <pre><code>$ source ../export.sh
 $ make mrproper
-$ make bcm2709_defconfig
-$ make menuconfig</code></pre></li>
+$ make bcm2709_defconfig</code></pre></li>
+<li><p>Configuramos el kernel con:</p>
+<pre><code>$ make menuconfig</code></pre>
+<p>y seleccionamos el modo real time:</p>
+<pre><code>General Setup -&gt; Preemption Model -&gt; Fully Preemptible kernel (Real-Time).</code></pre></li>
 <li><p>Compilamos el kernel (esto tarda un rato):</p>
-<pre><code>$ make -j4 zImage modules dtbs</code></pre></li>
+<p>$ make -j4 zImage modules dtbs</p></li>
 <li><p>Una vez compilado vamos a crear un tarball con los ficheros a instalar. Para ello creamos un directorio kernel-rt en el directorio de trabajo y lo seleccionamos como target para la instalación. Los dtbs irán en un subdirectorio boot.</p>
 <pre><code>$ mkdir ../kernel-rt
 $ make INSTALL_MOD_PATH=../kernel-rt/ modules_install
