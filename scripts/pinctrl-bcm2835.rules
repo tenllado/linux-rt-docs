@@ -1,0 +1,2 @@
+# Xenomai real-time devices
+SUBSYSTEM=="pinctrl-bcm2835", MODE="0660", GROUP="xenomai"
