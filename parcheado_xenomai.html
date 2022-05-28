@@ -1678,7 +1678,7 @@ Memory Management Options -&gt; Contiguous Memory Allocator [ ]</code></pre>
 <p>Aprovecharemos también para fijar la frecuencia de los ticks a 1000 Hz:</p>
 <pre><code>Kernel Features -&gt; Time Frequency -&gt; 1000Hz</code></pre>
 <p>Puede activarse el CPU Idle, y desactivarse cuando se ejecute una aplicación de tiempo real escribiendo en /dev/cpu_dma_latency. Nosotros optaremos por dejarlo desactivado como recomienda el Warning de Xenomai.</p>
-<p>Finalmente seleccionamos la opción Xenomai/cobalt-&gt;Drivers y activamos los drivers del GPIO, GPIOPWM y SPI. Pueden activarse otras opciones de interés.</p>
+<p>Finalmente seleccionamos la opción Xenomai/cobalt-&gt;Drivers y activamos los drivers del GPIO, GPIOPWM y SPI. Pueden activarse otras opciones de interés. El contenido del fichero de .config generado está disponible <a href="config_linux_rpi_xenomai">aquí</a> (hay que renombrarlo a .config).</p>
 <p>Por último, seleccionamos General Setup-&gt;Local versión y sustituimos -v7 por -v7-cobalt. Guardamos, salimos y compilamos el kernel:</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true"></a>$ <span class="fu">make</span> -j4 zImage modules dtbs</span></code></pre></div>
 <p>Una vez compilado, repetimos el proceso que hicimos con PREEMPT_RT para crear un tarball con los fichero a instalar en la raspberry pi. Creamos un directorio kernel-xenomai en el directorio de trabajo y lo seleccionamos como target para la instalación. Los dtbs irán en un subdirectorio boot.</p>
